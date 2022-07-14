@@ -54,21 +54,14 @@ export class DynamicQuestionComponent implements OnInit, ControlValueAccessor {
     } else {
       const index = this.arrValue.findIndex(i => i.key === e.target.value);
       this.arrValue[index].value = !this.arrValue[index].value;
-      // if(index > -1){
-      //   this.arrValue[index].value = 'false';
-      // } else {
-      //   this.arrValue[index].value = 'false';
-      //   this.arrValue.push({key: e.target.value, value: 'true'});
-      // }
-
       value = this.arrValue;
     }
-
-
     this.onModelChange(value);
     this.onTouch();
   }
 
   selectOptions(){}
-
+  get isOther(){
+    return (this.arrValue.findIndex(item => item.key === 'Other' && item.value) > -1);
+  }
 }

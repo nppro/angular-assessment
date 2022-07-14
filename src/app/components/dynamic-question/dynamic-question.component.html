@@ -8,5 +8,8 @@
           <input type="checkbox" [value]="op.key" (change)="changeValue($event)"  [checked]="op.value" /> {{op.key}}
         </label>
       </div>
+      <div *ngIf="isOther">
+        <input type="text"/>
+      </div>
     </div>
   </div>
