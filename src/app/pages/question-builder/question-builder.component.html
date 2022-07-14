@@ -1,0 +1,9 @@
+<button (click)="addQuestion()">Add Question</button>
+
+<!-- Add new Question -->
+<!-- <app-add-question (addQuestions)="giveQuestions($event)"></app-add-question> -->
+
+<app-dynamic-form [questions]="(questions$ | async)!" #dynamicForm></app-dynamic-form>
+
+<button *ngIf="(questions$ | async)!.length > 0" (click)="review()">Review my answers > </button>
+

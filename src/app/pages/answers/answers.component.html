@@ -1,0 +1,14 @@
+<h1>Review</h1>
+<div *ngFor="let q of (questions$ | async)!; index as i">
+  <h3>{{q.label}}</h3>
+  <div [ngSwitch]="q.controlType">
+    <p *ngSwitchCase="'textarea'">{{q.value}}</p>
+    <div *ngSwitchCase="'checkbox'">
+        <p>{{q.value | json}}</p>
+    </div>
+  </div>
+
+</div>
+
+<a routerLink="/form/builder" >Back to Form Builder</a>
+

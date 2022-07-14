@@ -1,0 +1,37 @@
+<h2>Add a New Questions</h2>
+<form [formGroup]="questionForm" (submit)="submitForm($event)">
+  <div>
+    <select id="control-type" formControlName="type">
+      <option [value]="ControlTypeEnum.PARAGRAPH">Paragraph</option>
+      <option [value]="ControlTypeEnum.CHECKBOX">Checkbox</option>
+    </select>
+  </div>
+  <div>
+    <input formControlName="name" placeholder="Type Question here"/>
+  </div>
+
+ <!-- Build dynamic answerOptions -->
+  <div *ngIf="questionType.value === ControlTypeEnum.CHECKBOX">
+    <div formArrayName="answers" >
+      <label *ngFor="let c of answers.controls; index as i">
+        <input type="text" [formControlName]="i" placeholder="Add Answer Option">
+      </label>
+    </div>
+    <button type="button" (click)="addAnotherAnswer()">+ Add another answer</button>
+    <br/>
+    <label id="ownAnswer" *ngIf="questionType.value === ControlTypeEnum.CHECKBOX">
+      <input type="checkbox" formControlName="ownAnswer" /> Allow user to specify their own answer
+    </label>
+  </div>
+
+  <label id="required">
+    <input type="checkbox" formControlName="required" /> This field is required
+  </label>
+
+  <!-- <button type="submit">Submit</button> -->
+  <div mat-dialog-actions>
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-button mat-dialog-close cdkFocusInitial type="submit">Submit</button>
+  </div>
+
+</form>

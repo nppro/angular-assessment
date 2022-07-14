@@ -1,0 +1,12 @@
+
+<label [attr.for]="question.key">{{question.label}} <span *ngIf="question.required">*</span></label>
+  <div [ngSwitch]="question.controlType">
+    <textarea *ngSwitchCase="'textarea'" (change)="changeValue($event)" [value]="value"></textarea>
+    <div *ngSwitchCase="'checkbox'">
+      <div >
+        <label *ngFor="let op of question.options; index as i">
+          <input type="checkbox" [value]="op.key" (change)="changeValue($event)"  [checked]="op.value" /> {{op.key}}
+        </label>
+      </div>
+    </div>
+  </div>
